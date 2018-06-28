@@ -17,7 +17,7 @@ namespace WebApplication1.Controllers
         [HttpGet("{id}")]
         public Profile Get(int id)
         {
-              return ProfileDataBase.Profiles.Single(x => x.Id == id);
+            return ProfileDataBase.Profiles.Single(x => x.Id == id);
         }
 
         [HttpDelete("{id}")]
@@ -26,10 +26,11 @@ namespace WebApplication1.Controllers
             var victim = ProfileDataBase.Profiles.Single(x => x.Id == id);
             return ProfileDataBase.Profiles.Remove(victim);
         }
-        [HttpPut("{id}")]
-        public bool Add(int id, string name, int age)
+        [HttpPost]
+        public bool Post([FromBody] Profile profile)
         {
-            return ProfileDataBase.Add(id, name, age);
+             ProfileDataBase.Profiles.Add(profile);
+            return true;
         }
     }
 }
